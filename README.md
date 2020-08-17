@@ -6,7 +6,7 @@ COVID-19 Chart
 
 フロント：gRPC-web　APIサーバーにリクエストしたデータを表示(React/TypeScript) ./app/client
 
-Proxy：envoy　gRPC-webを使うため使用している ./proxy
+プロキシ：envoy　gRPC-webを使うため使用している ./proxy
 
 [アプリURL](https://34.85.86.75)
 
