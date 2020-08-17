@@ -8,6 +8,8 @@ COVID-19 Chart
 
 プロキシ：envoy　gRPC-webを使うため使用している ./proxy
 
+インフラ：GCP
+
 [アプリURL](http://34.85.86.75)
 
 
