@@ -1,0 +1,27 @@
+version: "3"
+services:
+
+  node:
+    container_name: "client"
+    image: "node:latest"
+    working_dir: /home/node/app/client
+    volumes:
+      - ./app/client:/home/node
+    expose:
+      - "3000"
+    ports: ["3000:3000"]
+    tty: true
+
+  go:
+    container_name: "server"
+    build: "./"
+    volumes:
+      - ./app:/go/src/app
+    ports: ["9000:9000", "80:80"]
+    tty: true
+
+  proxy:
+    container_name: "proxy"
+    build: ./proxy
+    ports:
+      - "8080:8080"

@@ -1,0 +1,43 @@
+syntax = "proto3";
+package covid19api;
+
+option go_package = ".;covid19api";
+
+
+
+message ApiRequest {
+  string country = 1;
+  string status = 2;
+}
+
+message ApiCountries {
+  message Item {
+    string Country = 1;
+    string Slug = 2;
+    string ISO2 = 3;
+  }
+  repeated Item item = 1;
+}
+
+message ApiSummary {
+  message Item {
+    string Country = 1;
+    string CountryCode = 2;
+    string Slug = 3;
+    int32 NewConfirmed = 4;
+    int32 NewDeaths = 5;
+    int32 NewRecovered = 6;
+    int32 TotalConfirmed = 7;
+    int32 TotalDeaths = 8;
+    int32 TotalRecovered = 9;
+    string Date = 10;
+  }
+  Item Global = 1;
+  repeated Item Countries = 2;
+  string Date = 3;
+}
+
+service ApiService {
+  rpc getCountries(ApiRequest) returns (ApiCountries) {}
+  rpc getSummary(ApiRequest) returns (ApiSummary) {}
+}
