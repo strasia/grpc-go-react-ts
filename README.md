@@ -2,6 +2,8 @@ COVID-19 Chart
 ====
 
 ## Description
+ポートフォリオを1週間かけて作ってみました。
+
 サーバー：gRPC(golang)　covid19apiを読み込み、APIサービスを提供 ./app
 
 フロント：gRPC-web　APIサーバーにリクエストしたデータを表示(React/TypeScript/Sass) ./app/client
