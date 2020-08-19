@@ -30,14 +30,11 @@ export default function App() {
       const countryData = summary.current.countriesList.filter((item: any ) => {
         return item.slug === country
       })[0]
-      setData((prevData: any) => {
-        if (countryData) {
-          return countryData
-        } else {
-          alert("No data")
-          return prevData
-        }
-      })
+      if (countryData) {
+        setData(countryData)
+      } else {
+        alert("No data")
+      }
     }
   }
   
