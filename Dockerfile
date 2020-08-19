@@ -14,7 +14,7 @@ WORKDIR /go/src/app
 
 RUN go get google.golang.org/grpc github.com/gin-gonic/gin github.com/mitchellh/mapstructure github.com/grpc-ecosystem/go-grpc-middleware
 RUN cd /go/src/app && \
-    go build Server.go && \
+    go test server.go server_test.go && go build server.go\
     go build GrpcServer.go
 
 EXPOSE 80 9000

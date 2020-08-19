@@ -5,7 +5,11 @@ import (
 )
 
 func main() {
+	NewServer().Run(":80")
+}
+
+func NewServer() *gin.Engine {
 	router := gin.Default()
 	router.Static("/", "./client/build")
-	router.Run(":80")
+	return router
 }
