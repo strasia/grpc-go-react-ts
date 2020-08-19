@@ -4,7 +4,7 @@ services:
   node:
     container_name: "client"
     image: "node:latest"
-    working_dir: /home/node/app/client
+    working_dir: /home/node/
     volumes:
       - ./app/client:/home/node
     expose:

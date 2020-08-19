@@ -8,8 +8,7 @@ import styles from './App.module.sass'
 
 export default function App() {
   const summary = useRef({})
-  const [data, setData] = useState({})
-  const [loading, setLoading] = useState(true)
+  const [data, setData] = useState(null)
 
   useEffect(() => {
     ApiService.getSummary(new ApiRequest(), {}, (err: any, response: any) => {
@@ -17,7 +16,6 @@ export default function App() {
         summary.current = response.toObject()
         summary.current.global = {...summary.current.global, date: summary.current.date}
         setData(summary.current.global)
-        setLoading(false)
       }
     })
   }, [])
@@ -39,7 +37,7 @@ export default function App() {
   }
   
   return (
-    loading ? (<LoadingOverlay className={styles.overlay} active={true} spinner />) : 
+    data === null ? (<LoadingOverlay className={styles.overlay} active={true} spinner />) : 
     (
       <>
         <Navi />
