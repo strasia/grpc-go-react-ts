@@ -6,7 +6,7 @@ Golangの勉強も兼ねて、ポートフォリオを1週間かけて作って�
 
 サーバー：gRPC(golang)　covid19apiを読み込み、APIサービスを提供 ./app
 
-フロント：gRPC-web　APIサーバーにリクエストしたデータを表示(React/TypeScript/Sass) ./app/client
+フロント：gRPC-web(React/TypeScript/Sass)　APIサーバーにリクエストしたデータを表示 ./app/client
 
 プロキシ：envoy　gRPC-webを使うため使用している ./proxy
 
