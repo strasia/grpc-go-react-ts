@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"net"
 	"net/http"
 	"context"
@@ -54,7 +55,7 @@ type Server struct{}
 
 func (s *Server) GetCountries(ctx context.Context, req *ApiRequest) (*ApiCountries, error) {
 	var data []*ApiCountries_Item
-	err := FetchApi("GET", "countries", req, &data)
+	err := FetchAndDecodeJson("GET", "countries", req, &data)
 
 	return &ApiCountries{ Item: data }, err
 }
@@ -65,15 +66,14 @@ func (s *Server) GetSummary(ctx context.Context, req *ApiRequest) (*ApiSummary, 
 		res ApiSummary
 	)
 
-	err := FetchApi("GET", "summary", req, &data)
+	err := FetchAndDecodeJson("GET", "summary", req, &data)
 	mapstructure.Decode(data, &res)
 
 	return &res, err
 }
 
 
-//Fetch & Decode JSON data
-func FetchApi(method string, query string, req *ApiRequest, res interface{}) error{
+func FetchApi(method string, query string, req *ApiRequest) *http.Response{
 	var (
 		endpoint string = "https://api.covid19api.com/"
 		resp *http.Response
@@ -97,13 +97,26 @@ func FetchApi(method string, query string, req *ApiRequest, res interface{}) err
 	if err != nil {
 		panic(err)
 	}
+
+	return resp
+}
+
+
+func DecodeJson(rawJson io.Reader, res interface{}) {
+	err := json.NewDecoder(rawJson).Decode(res)
+	if err != nil {
+		panic(err)
+	}
+}
+
+
+func FetchAndDecodeJson(method string, query string, req *ApiRequest, res interface{}) error{
+	
+	resp := FetchApi(method, query, req)
 	defer resp.Body.Close()
 
 	if resp.StatusCode == 200 {
-		err1 := json.NewDecoder(resp.Body).Decode(res)
-		if err1 != nil {
-			panic(err1)
-		}
+		DecodeJson(resp.Body, &res)
 	} else {
 		return status.Error(codes.InvalidArgument, "Bad Request")
 	}

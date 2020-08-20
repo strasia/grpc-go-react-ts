@@ -1,8 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"testing"
+	"fmt"
 	"net/http"
 	"net/http/httptest"
 )
