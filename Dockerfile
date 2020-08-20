@@ -13,8 +13,7 @@ WORKDIR /go/src/app
 # RUN apt-get update && apt install -y protobuf-compiler
 
 RUN go get google.golang.org/grpc github.com/gin-gonic/gin github.com/mitchellh/mapstructure github.com/grpc-ecosystem/go-grpc-middleware
-RUN cd /go/src/app && \
-    go test server.go server_test.go && go build server.go\
-    go build GrpcServer.go
+RUN cd /go/src/app/server && go test && go build && \
+    cd ../grpc_server && go test && go build
 
 EXPOSE 80 9000
