@@ -10,6 +10,6 @@ func main() {
 
 func NewServer() *gin.Engine {
 	router := gin.Default()
-	router.Static("/", "./client/build")
+	router.Static("/", "../client/build")
 	return router
 }
