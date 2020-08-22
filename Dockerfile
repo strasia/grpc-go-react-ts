@@ -4,7 +4,7 @@ WORKDIR /go/src
 
 ARG GRPC_SERVER=http://localhost:8080
 ADD ./app /go/src
-RUN cd ./client && REACT_APP_GRPC_SERVER=$GRPC_SERVER npm run build
+RUN cd ./client && npm install && REACT_APP_GRPC_SERVER=$GRPC_SERVER npm run build
 
 
 
