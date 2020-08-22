@@ -10,7 +10,7 @@ Golangの勉強も兼ねて、ポートフォリオを1週間かけて作って�
 
 プロキシ：envoy　gRPC-webを使うため使用している ./proxy
 
-インフラ：GCP
+インフラ：GCP/GKE/Cloud Build
 
 [アプリURL](http://34.85.86.75)
 
