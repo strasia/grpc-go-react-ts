@@ -21,6 +21,7 @@ RUN go mod download
 #     cd ../grpc_server && go test && go build
 
 # ###### protobuf compiler #######
+# RUN go get github.com/golang/protobuf/protoc-gen-go
 # ADD https://github.com/grpc/grpc-web/releases/download/1.2.0/protoc-gen-grpc-web-1.2.0-linux-x86_64 /usr/local/bin/protoc-gen-grpc-web
 # RUN chmod +x /usr/local/bin/protoc-gen-grpc-web
 
