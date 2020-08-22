@@ -16,7 +16,7 @@ services:
     container_name: "server"
     build: "./"
     volumes:
-      - ./app:/go/src/app
+      - ./app:/usr/local/app
     ports: ["9000:9000", "80:80"]
     tty: true
 
