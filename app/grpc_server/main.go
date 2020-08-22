@@ -16,9 +16,14 @@ import (
 func main() {
 
 	opts := []grpc_recovery.Option{
-		grpc_recovery.WithRecoveryHandler(Recovery),
+		grpc_recovery.WithRecoveryHandler(
+			func (p interface{}) error {
+				fmt.Printf("p: %+v\n", p)
+				return grpc.Errorf(codes.Internal, "Unexpected error")
+			},
+		),
 	}
-
+	
 	server := grpc.NewServer(
 		grpc_middleware.WithUnaryServerChain(
 			grpc_recovery.UnaryServerInterceptor(opts...),
@@ -35,10 +40,4 @@ func main() {
 	if err :=server.Serve(lis); err != nil {
 		panic(err)
 	}
-}
-
-
-func Recovery(p interface{}) error {
-	fmt.Printf("p: %+v\n", p)
-	return grpc.Errorf(codes.Internal, "Unexpected error")
 }
