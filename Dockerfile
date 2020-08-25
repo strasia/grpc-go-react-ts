@@ -1,10 +1,10 @@
 FROM node:latest
 
-WORKDIR /go/src
+WORKDIR /home/node
 
 ARG GRPC_SERVER=http://localhost:8080
-ADD ./app /go/src
-RUN cd ./client && npm install && REACT_APP_GRPC_SERVER=$GRPC_SERVER npm run build
+ADD ./client /home/node
+RUN npm install && REACT_APP_GRPC_SERVER=$GRPC_SERVER npm run build
 
 
 
@@ -14,7 +14,8 @@ WORKDIR /go/src
 
 ENV GO111MODULE=on
 
-COPY --from=0 /go/src .
+COPY ./server /go/src
+COPY --from=0 /home/node /go/src/client
 RUN go mod download
 # RUN go mod download && \
 #     cd /go/src/server && go test && go build && \
