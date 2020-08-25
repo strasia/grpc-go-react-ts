@@ -6,7 +6,7 @@ services:
     image: "node:latest"
     working_dir: /home/node/
     volumes:
-      - ./app/client:/home/node
+      - ./client:/home/node
     expose:
       - "3000"
     ports: ["3000:3000"]
@@ -16,7 +16,7 @@ services:
     container_name: "server"
     build: "./"
     volumes:
-      - ./app:/go/src/app
+      - ./server:/go/src/server
     ports: ["9000:9000", "80:80"]
     tty: true
 
