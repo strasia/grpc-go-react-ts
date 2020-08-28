@@ -1,12 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { Context } from '../../context/context'
 import { Grid } from '@material-ui/core'
 import CardComponent from './Card/Card'
 import styles from './Cards.module.sass'
 
-export default function Info({ data: { totalconfirmed, totalrecovered, totaldeaths, date }}: {data:{totalconfirmed:number, totalrecovered:number, totaldeaths:number, date:string}})  {
-  if (!totalconfirmed) {
-    return null
-  }
+export default function Info()  {
+  const { totalconfirmed, totalrecovered, totaldeaths, date } = useContext(Context)
   return (
     <div className={styles.container}>
       <Grid container spacing={3} justify="center">

@@ -1,10 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, {useContext, useState, useEffect, useRef } from 'react'
+import { Context } from '../../context/context'
 import { ApiService, ApiRequest } from '../../covid19api/covid19api'
 
 import styles from './CountryPicker.module.sass'
 
 
-export default function CountryPicker({handleCountryChange}: {handleCountryChange: any}) {
+export default function CountryPicker() {
+  const { setState } = useContext(Context)
 
   const [countries, setCountries] = useState([])
   const countryRef = useRef()
@@ -17,7 +19,7 @@ export default function CountryPicker({handleCountryChange}: {handleCountryChang
 
   return (
     <div className={styles.formControl}>
-      <select className="form-control" ref={countryRef} name="country" id="country" onChange={handleCountryChange}>
+      <select className="form-control" ref={countryRef} name="country" id="country" onChange={(e) => setState(e.currentTarget.value)}>
         <option key="0" value="">Global</option>
         {
           countries.map((item: any, key: any) => {

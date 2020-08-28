@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { Context } from '../../context/context'
 import { Bar } from 'react-chartjs-2'
 
 import styles from './Chart.module.sass'
 
-export default function Chart({ data: { totalconfirmed, totalrecovered, totaldeaths } }) {
+export default function Chart() {
+  const { totalconfirmed, totalrecovered, totaldeaths } = useContext(Context)
 
   return (
     <div className={styles.container}>
