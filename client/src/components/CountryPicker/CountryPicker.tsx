@@ -6,7 +6,7 @@ import styles from './CountryPicker.module.sass'
 
 
 export default function CountryPicker() {
-  const { setState } = useContext(Context)
+  const { slug, setState } = useContext(Context)
 
   const [countries, setCountries] = useState([])
   const countryRef = useRef()
@@ -19,7 +19,7 @@ export default function CountryPicker() {
 
   return (
     <div className={styles.formControl}>
-      <select className="form-control" ref={countryRef} name="country" id="country" onChange={(e) => setState(e.currentTarget.value)}>
+      <select className="form-control" ref={countryRef} name="country" id="country" value={slug} onChange={(e) => setState(e.currentTarget.value)}>
         <option key="0" value="">Global</option>
         {
           countries.map((item: any, key: any) => {
